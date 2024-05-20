@@ -1,44 +1,44 @@
-# Сервис метрик
+# Metrics Service
 
-## Описание
-Сервис для формирвоания и отправки метрик.  
-Бизнес-метрики получаются с БД.
+## Description
+A service for generating and sending metrics.  
+Business metrics are obtained from the database.
 
-### Есть два вида метрик, предоставляемые сервисом
-1) Метрики `Prometheus`, доступные по пути `some.example.ru/metrics-app/metrics`:
-  - `policies_purchased_today_gauge` - Количество купленных за сегодня полисов
-  - `authentications_today_gauge` - Количество аутентификаций за сегодня
+### There are two types of metrics provided by the service
+1) `Prometheus` metrics, metrics, available at `some.example.ru/metrics-app/metrics`:
+  - `policies_purchased_today_gauge` - Number of policies purchased today
+  - `authentications_today_gauge` - Number of authentications today
 
 <br>
 
-2) Таблицы с данными, которые отправляются на заданные Email-адреса с почтового адреса `fatal-alert@some.example.ru`:
-  - Данные о наличии проблем с сертификатами  
-  - Данные об оплаченных, но не выпущенных полисах.
+2) Data tables sent to specified email addresses from `fatal-alert@some.example.ru`:
+  - Data on certificate issues  
+  - Data on paid but not issued policies
 
-## Сборка и запуск приложения
-Проект разрабатывался на версии `Go` - `1.22.1`.  
+## Building and Running the Application
+The project was developed with `Go` - `1.22.1`.  
 
-Приложение необходимо запускать в корневой директории проекта (там где находится `main.go`).  
-Запустить приложение можно командой `go run main.go --contour <local/demo/preprod/prod>`.
+The application should be run in the root directory of the project (where `main.go` is located).  
+You can run the application with the command `go run main.go --contour <local/demo/preprod/prod>`.
 
-Также приложение можно собрать в исполняемый файл.  
-Это делается командой `go build -o ./metrics-app ./main.go` в случае `Linux/MacOS`
-или же `go build -o ./metrics-app.exe ./main.go` в случае `Windows`.  
-Приложение соберётся конкретно под ту ОС и архитектуру процессора,
-на которой была запущена команда сборки.
-Если есть необходимость собрать приложение под другой случай,
-тогда надо предварительно установить переменные окружения `GOOS` и `GOARCH`.
+You can also build the application into an executable file.  
+This is done with the command `go build -o ./metrics-app ./main.go` for `Linux/MacOS`
+or `go build -o ./metrics-app.exe ./main.go` for `Windows`.  
+The application will be built specifically for the OS and processor architecture
+on which the build command was run.
+If you need to build the application for another case,
+you must first set the environment variables `GOOS` and `GOARCH`.
 
-Примеры:
+Examples:
 - `env GOOS=linux GOARCH=amd64 go build -o metrics-app main.go`
 - `env GOOS=darwin GOARCH=arm64 go build -o metrics-app main.go`
 - `env GOOS=windows GOARCH=386 go build -o metrics-app.exe main.go`
 
-Полный список доступных вариантов можно узнать командой `go tool dist list`.
+You can find the full list of available options with the command `go tool dist list`.
 
-## Конфигурация
-В директории `./config` должен лежать как минимум один файл с конфигурацией под необходимый контур. 
-Название файла оформляется следующим образом: `config.<local/demo/preprod/prod>.json`.   
-Пример: `config.demo.json`  
+## Configuration
+The `./config` directory should contain at least one configuration file for the required contour. 
+The file name should be formatted as follows: `config.<local/demo/preprod/prod>.json`.   
+Example: `config.demo.json`  
 
-Во время запуска приложения можно указать необходимый контур (как было показано в секции [Сборка и запуск приложения](#сборка-и-запуск-приложения))
+When starting the application, you can specify the required contour (as shown in the [Building and Running the Application](#building-and-running-the-application) section).
