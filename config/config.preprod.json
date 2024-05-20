@@ -1,0 +1,15 @@
+{
+  "smtp_host": "mail.inside.example.ru",
+  "smtp_port": "25",
+  "postgres_conn": "host=localhost port=5432 user=CHANGE_IT password=CHANGE_IT dbname=test sslmode=disable",
+  "email_sender": "fatal-alert@some.example.ru",
+  "email_certs_receivers": [
+    "some_bd_be@example.ru",
+    "super-user@example.ru",
+    "another.user@example.ru"
+  ],
+  "email_policy_receivers": [
+    "some_bd_be@example.ru",
+    "some-support@example.ru"
+  ]
+}
